@@ -1,6 +1,6 @@
-pipline{
+pipline {
 agent any
-tools{
+tools {
 maven "maven3.8.4"
 }
 stages{

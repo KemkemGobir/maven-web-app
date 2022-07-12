@@ -1,38 +1,38 @@
-pipline {
+pipeline{
 agent any
 tools {
 maven "maven3.8.4"
 }
-stages{
-stage ("1.Gitclone"){
+stages {
+stage ("1.git clone"){
 steps{
-sh "echo Git Cloning"
+sh "echo cloning application from git"
 git "https://github.com/KemkemGobir/maven-web-app.git"
 }
 }
-stage ("2.Building application"){
+stage ("2.building application") {
 steps {
 sh "echo building application"
 sh "mvn package"
 }
 }
-stage ("3.testing Code Quality"){
+stage ("3.testing artifact"){
 steps {
-sh "echo Code Quality Testing"
+sh "echo testing artifact in nexus"
 sh "mvn sonar:sonar"
 }
 }
-stage ("4.Approval Stage"){
+stage ("4.seeking approval"){
 steps {
-sh "echo Seeking approval"
+sh "echo waiting for approval stage"
 timeout (time:5, unit:'MINUTES'){
-input message: 'seeking approval'
+input message: 'awaiting approval for prod'
 }
 }
 }
-stage ("5.Deploy"){
+stage ("5.deploying to prod"){
 steps {
-sh "echo Deploy to tomcat"
+sh "echo deploying to tomcat"
 }
 }
 }

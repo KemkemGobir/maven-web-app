@@ -10,7 +10,7 @@ sh "echo Git Cloning"
 git "https://github.com/KemkemGobir/maven-web-app.git"
 }
 }
-stage ("2.Building aplication"){
+stage ("2.Building application"){
 steps {
 sh "echo building application"
 sh "mvn package"

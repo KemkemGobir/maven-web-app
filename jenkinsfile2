@@ -1,0 +1,11 @@
+pipline{
+agent any
+tools{
+maven "maven3.8.4"
+}
+stages{
+stage ("1.Gitclone"){
+sh "Git Cloning"
+git 
+}
+}

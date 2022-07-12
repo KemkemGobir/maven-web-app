@@ -5,7 +5,35 @@ maven "maven3.8.4"
 }
 stages{
 stage ("1.Gitclone"){
-sh "Git Cloning"
-git 
+steps{
+sh "echo Git Cloning"
+git "https://github.com/KemkemGobir/maven-web-app.git"
+}
+}
+stage ("2.Building aplication"){
+steps {
+sh "echo building application"
+sh "mvn package"
+}
+}
+stage ("3.testing Code Quality"){
+steps {
+sh "echo Code Quality Testing"
+sh "mvn sonar:sonar"
+}
+}
+stage ("4.Approval Stage"){
+steps {
+sh "echo Seeking approval"
+timeout (time:5, unit:'MINUTES'){
+input message: 'seeking approval'
+}
+}
+}
+stage ("5.Deploy"){
+steps {
+sh "echo Deploy to tomcat"
+}
+}
 }
 }
